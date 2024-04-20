@@ -1,0 +1,33 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata: 
+  name: cn-app-service
+spec:
+  selector:
+    app: cn-monitoring-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cn-monitoring-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cn-monitoring-app
+    spec:
+      containers:
+        - name: cn-app
+          image: naveenchand06/cn-monitoring-app
+  selector:
+    matchLabels:
+      app: cn-monitoring-app
