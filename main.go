@@ -40,7 +40,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	// os.Setenv("POD_NAME", "TESTING")
 	err = t.Execute(w, os.Getenv("POD_NAME"))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
