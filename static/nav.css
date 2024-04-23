@@ -1,0 +1,137 @@
+/* body {
+  height: 100vh;
+  background-image: linear-gradient(black, white);
+}
+.all {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.all .content {
+  width: 50%;
+  height: fit-content;
+  background-color: lightblue;
+  background-image: linear-gradient(white, black);
+  display: flex;
+  justify-content: space-around;
+  padding: 100px;
+  border-radius: 10px;
+}
+.memory-container,
+.cpu-container {
+  height: 500px;
+  width: 300px;
+  background-color: white;
+  display: flex;
+  flex-direction: column-reverse;
+  border-radius: 20px;
+}
+
+#cpu,
+#memory {
+  background-color: black;
+  width: 100%;
+  transition: 1s;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 10px;
+}
+
+.all h1 {
+  color: white;
+  text-align: center;
+} */
+
+/* ======================================================== */
+
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-image: linear-gradient(to bottom right, #1c92d2, #f2fcfe); */
+  background-color: #0093E9;
+background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+}
+
+.all {
+  width: 70%;
+  max-width: 800px;
+  padding: 100px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  
+}
+
+.cpu-content,
+.memory-content {
+  flex: 1 1 300px;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.462);  */
+  -webkit-box-shadow: -8px 37px 63px 6px rgba(235,226,235,1);
+  -moz-box-shadow: -8px 37px 63px 6px rgba(235,226,235,1);
+  box-shadow: -8px 37px 63px 6px rgba(235,226,235,1);
+  text-align: center;
+}
+
+.cpu-container,
+.memory-container {
+  height: 300px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+#cpu,
+#memory {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #007bff;
+  transition: height 0.5s ease;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .all {
+    width: 90%;
+  }
+  .cpu-content,
+  .memory-content {
+    flex-basis: 100%;
+  }
+}
+
+/* ==================================== water eff */

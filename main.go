@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/mem"
@@ -32,28 +34,14 @@ func getMemoryUsage() (float64, error) {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	// Get overall CPU utilization
-	cpuPercent, err := getCPUUsage()
+	t, err := template.ParseFiles("./templates/index.html")
 	if err != nil {
+		log.Fatal(err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	memUsedPercent, err := getMemoryUsage()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	// Parse and execute the template
-	t, err := template.ParseFiles("index.html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	data := UtilizationPercent{
-		cpuPercent,
-		memUsedPercent,
-	}
-	err = t.Execute(w, data)
+
+	err = t.Execute(w, os.Getenv("POD_NAME"))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -87,6 +75,8 @@ func apiResponse(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/data", apiResponse)

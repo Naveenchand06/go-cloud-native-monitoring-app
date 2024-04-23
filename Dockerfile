@@ -10,6 +10,8 @@ COPY . .
 
 RUN go build -o app .
 
+ENV POD_NAME=LOCAL
+
 EXPOSE 8080
 
 CMD [ "./app" ]

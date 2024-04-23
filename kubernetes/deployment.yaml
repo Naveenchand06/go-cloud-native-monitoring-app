@@ -28,6 +28,11 @@ spec:
       containers:
         - name: cn-app
           image: naveenchand06/cn-monitoring-app
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
   selector:
     matchLabels:
       app: cn-monitoring-app
